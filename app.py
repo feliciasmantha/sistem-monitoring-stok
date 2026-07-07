@@ -297,20 +297,30 @@ def edit_bahan(id):
         data=data
     )
 
+## hapus bahan
+
 @app.route("/hapus_bahan/<int:id>")
 def hapus_bahan(id):
 
-    if "id" not in session or session["role"]!="karyawan":
-        return redirect("/")
+    conn = get_connection()
+    cur = conn.cursor()
 
-    conn=get_connection()
-    cur=conn.cursor()
+    cur.execute(
+        "SELECT COUNT(*) FROM permintaan WHERE bahan_id=%s",
+        (id,)
+    )
 
-    cur.execute("""
-    DELETE
-    FROM bahan_baku
-    WHERE id=%s
-    """,(id,))
+    jumlah = cur.fetchone()[0]
+
+    if jumlah > 0:
+        cur.close()
+        conn.close()
+        return "Bahan tidak dapat dihapus karena masih digunakan pada data permintaan."
+
+    cur.execute(
+        "DELETE FROM bahan_baku WHERE id=%s",
+        (id,)
+    )
 
     conn.commit()
 
