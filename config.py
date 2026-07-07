@@ -1,0 +1,5 @@
+DB_HOST = "localhost"
+DB_NAME = "dkriuk_monitoring"
+DB_USER = "postgres"
+DB_PASSWORD = "622005"
+DB_PORT = "5432"

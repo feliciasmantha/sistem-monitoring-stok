@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Sistem Monitoring Stok D'Kriuk{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#f4f6f9;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        .sidebar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:240px;
+            height:100vh;
+            background:#dc3545;
+            color:white;
+        }
+
+        .sidebar h3{
+            text-align:center;
+            padding:20px;
+            font-weight:bold;
+            border-bottom:1px solid rgba(255,255,255,.2);
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 20px;
+            transition:.3s;
+        }
+
+        .sidebar a:hover{
+            background:#bb2d3b;
+            padding-left:28px;
+        }
+
+        .main{
+            margin-left:240px;
+            padding:30px;
+        }
+
+        .navbar-custom{
+            background:white;
+            border-radius:15px;
+            padding:15px 25px;
+            margin-bottom:25px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 3px 10px rgba(0,0,0,.08);
+        }
+
+        .card{
+            border:none;
+            border-radius:15px;
+            box-shadow:0 2px 10px rgba(0,0,0,.08);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<<div class="sidebar">
+
+    <div class="text-center py-4">
+
+        <img
+        src="{{ url_for('static', filename='img/logo.png') }}"
+        width="90"
+        class="mb-2">
+
+        <h4>D'KRIUK</h4>
+
+        <small>Sistem Monitoring</small>
+
+        <hr class="mx-3" style="border-color:rgba(255,255,255,.3);">
+
+    </div>
+
+    {% if session["role"]=="owner" %}
+
+        <a href="/dashboard_owner">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a href="/monitoring">
+            <i class="bi bi-bar-chart"></i>
+            Monitoring
+        </a>
+
+        <a href="/permintaan">
+            <i class="bi bi-cart-plus"></i>
+            Permintaan
+        </a>
+
+        <a href="/laporan">
+            <i class="bi bi-file-earmark-text"></i>
+            Laporan
+        </a>
+
+    {% elif session["role"]=="karyawan" %}
+
+        <a href="/dashboard_karyawan">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a href="/bahan">
+            <i class="bi bi-box-seam"></i>
+            Bahan Baku
+        </a>
+
+        <a href="/supplier">
+            <i class="bi bi-truck"></i>
+            Supplier
+        </a>
+
+        <a href="/stok_masuk">
+            <i class="bi bi-box-arrow-in-down"></i>
+            Stok Masuk
+        </a>
+
+        <a href="/stok_keluar">
+            <i class="bi bi-box-arrow-up"></i>
+            Stok Keluar
+        </a>
+
+    {% elif session["role"]=="supplier" %}
+
+        <a href="/dashboard_supplier">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a href="/permintaan_supplier">
+            <i class="bi bi-envelope-paper"></i>
+            Permintaan Masuk
+        </a>
+
+    {% endif %}
+
+    <hr class="mx-3" style="border-color:rgba(255,255,255,.3);">
+
+    <a href="/logout">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+
+</div>
+
+<div class="main">
+
+    <div class="navbar-custom">
+
+        <div>
+
+            <h4 class="mb-0">
+                {% block judul %}
+                Dashboard
+                {% endblock %}
+            </h4>
+
+        </div>
+
+        <div>
+
+            <strong>{{ session["nama"] }}</strong><br>
+
+            <small>{{ session["role"]|capitalize }}</small>
+
+        </div>
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<footer class="text-center mt-5 text-secondary">
+
+<hr>
+
+© 2026 Sistem Monitoring Stok Franchise D'Kriuk
+
+</footer>
+
+</body>
+
+</html>
