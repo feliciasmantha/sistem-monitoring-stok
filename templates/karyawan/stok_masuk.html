@@ -10,25 +10,78 @@
 
         <form method="POST">
 
-            <div class="col-12 col-md-3">
+           <div class="card mb-4">
+    <div class="card-body">
 
-                <div class="col-md-3">
+       <form method="POST">
 
-                    <select name="bahan_id" class="form-select" required>
+    <div class="row g-3">
 
-                        <option value="">Pilih Bahan</option>
+        <div class="col-12 col-md-4">
+            <select name="bahan_id" class="form-select" required>
 
-                        {% for b in bahan %}
+                <option value="">Pilih Bahan</option>
 
-                        <option value="{{ b[0] }}">
-                            {{ b[1] }}
-                        </option>
+                {% for b in bahan %}
+                <option value="{{ b[0] }}">
+                    {{ b[1] }}
+                </option>
+                {% endfor %}
 
-                        {% endfor %}
+            </select>
+        </div>
 
-                    </select>
+        <div class="col-12 col-md-4">
+            <select name="supplier_id" class="form-select" required>
 
-                </div>
+                <option value="">Pilih Supplier</option>
+
+                {% for s in supplier %}
+                <option value="{{ s[0] }}">
+                    {{ s[1] }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <input
+                type="number"
+                name="jumlah"
+                class="form-control"
+                placeholder="Jumlah"
+                required>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <input
+                type="date"
+                name="tanggal"
+                class="form-control"
+                required>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <input
+                type="text"
+                name="keterangan"
+                class="form-control"
+                placeholder="Keterangan">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-danger w-100">
+                Simpan
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+    </div>
+</div>
 
                <div class="col-12 col-md-3">
 
