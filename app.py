@@ -7,7 +7,7 @@ from openpyxl.styles import Font
 import io
 
 app = Flask(__name__)
-app.secret_key = "dkriuk_monitoring_2026"
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
 
 ##LOGINNN
 
