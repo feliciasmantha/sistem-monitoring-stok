@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, session
 from database import get_connection
 from datetime import date
@@ -5,6 +6,9 @@ from flask import send_file
 from openpyxl import Workbook
 from openpyxl.styles import Font
 import io
+
+app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
