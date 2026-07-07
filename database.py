@@ -8,9 +8,11 @@ def get_connection():
             database=DB_NAME,
             user=DB_USER,
             password=DB_PASSWORD,
-            port=DB_PORT
+            port=DB_PORT,
+            sslmode="require"
         )
         return conn
+
     except Exception as e:
-        print("Database Error :", e)
+        print("Database Error:", e)
         return None
