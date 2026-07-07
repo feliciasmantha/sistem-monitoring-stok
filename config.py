@@ -1,5 +1,7 @@
-DB_HOST = "ep-misty-thunder-aovfuddo-pooler.c-2.ap-southeast-1.aws.neon.tech"
-DB_NAME = "neondb"
-DB_USER = "neondb_owner"
-DB_PASSWORD = "npg_Q3riwlDnoJk8"
-DB_PORT = "5432"
+import os
+
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = os.getenv("DB_PORT", "5432")
