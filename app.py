@@ -10,9 +10,6 @@ import io
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
 
-app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
-
 ##LOGINNN
 
 @app.route("/", methods=["GET","POST"])
